@@ -1,7 +1,7 @@
 <body>
     <div class="top-bar">
         <h1>
-            My Forum
+          Forum
         </h1>
     </div>
     <div class="main">
@@ -10,18 +10,29 @@
     </div>
     <script src="data.js"></script>
     <script>
-        console.log(threads);
+        // console.log(threads);
         var container = document.querySelector('ol');
         for (let thread of threads) {
+            function formatAMPM(date) {
+              var hours = date.getHours();
+              var minutes = date.getMinutes();
+              var ampm = hours >= 12 ? 'pm' : 'am';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // the hour '0' should be '12'
+              minutes = minutes < 10 ? '0'+minutes : minutes;
+              var strTime = hours + ':' + minutes + ' ' + ampm;
+              return strTime;
+            }
             var html = `
             <li class="row">
-                <a href="/thread.html?${thread.id}">
+                <a class="row-a" href="/thread.html?${thread.id}">
                     <h4 class="title">
                         ${thread.title}
                     </h4>
                     <div class="bottom">
                         <p class="timestamp">
-                            ${new Date(thread.date).toLocaleString()}
+                            ${formatAMPM(new Date(thread.date)) //new Date(thread.date).toLocaleString()
+                              }                      
                         </p>
                         <p class="comment-count">
                             ${thread.comments.length} comments
@@ -44,16 +55,30 @@
         h1, h4, ol {
             margin: 0;
         }
+        .row{
+            transition: 0.3s;
+            border-radius: 20px;
+            z-index: 999;
+        }
+        .row:hover{
+            transform: scale(1.1);
+        }
         p {
             margin: 5px 0;
         }
         .top-bar {
-            background-color: skyblue;
-            padding: 0 40px;
+            background-color: dodgerblue;
+            color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px 40px;
         }
         .main {
+            box-shadow: 0 3px 3px #33333333;
             background-color: #F6F6EF;
-            padding: 10px 15px;
+            padding: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
         .row {
             padding: 5px 0;
