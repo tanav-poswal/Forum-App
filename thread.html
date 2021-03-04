@@ -1,19 +1,20 @@
 <body>
     <div class="top-bar">
         <h1>
-            My Forum
+          Forum
         </h1>
     </div>
     <div class="main">
         <div class="header">
         </div>
-        <textarea></textarea>
+        <textarea>your idea</textarea>
         <button>add comment</button>
         <div class="comments">
         </div>
     </div>
     <script src="data.js"></script>
     <script>
+        // what is this not decided what to do
         var id = window.location.search.slice(1);
         var thread = threads.find(t => t.id == id);
         var header = document.querySelector('.header');
@@ -90,15 +91,31 @@
         }
         button {
             display: block;
-            margin: 10px 0;
+            margin: 10px 0px;
+            padding: 10px;
+            background-color: dodgerblue;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            transition: 0.3s;
+            box-shadow: 0 3px 3px #33333333;
+        }
+        button:hover{
+            transform: scale(1.1);
         }
         .top-bar {
-            background-color: skyblue;
-            padding: 0 40px;
+            background-color: dodgerblue;
+            color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px 40px;
         }
         .main {
+            box-shadow: 0 3px 3px #33333333;
             background-color: #F6F6EF;
-            padding: 10px 40px;
+            padding: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
         .comments {
             margin: 40px 0;
